@@ -1,20 +1,20 @@
 import http from 'http';
 import HttpException from 'http-exception';
-import statusList from 'http-exception/src/status';
-import kebabCase from 'http-exception/src/utils/kebabCase';
-import camelCase from 'http-exception/src/utils/camelCase';
+import statusList from 'http-exception/src/status.js';
+import kebabCase from 'http-exception/src/utils/kebabCase.js';
+import camelCase from 'http-exception/src/utils/camelCase.js';
 import _ from 'underscore';
 
 class AppException extends HttpException {
-    constructor(message = 'Internal Server Error', code = 0, status = 500) {
+    constructor(message = undefined, code = undefined, status = undefined) {
         super(message);
-        this.message = message;
-        this.code = code;
-        this.status = status;
+        this.message = message || statusList.defaults.message;
+        this.code = code || statusList.defaults.code;
+        this.status = status || statusList.defaults.status;
     }
 
     static createError(o={}) {
-        o = _.defaults(o, {message: 'Internal Server Error', code: 0, status: 500});
+        o = _.defaults(o, statusList.defaults);
         const error = new AppException(o.message, o.code, o.status);
         Error.captureStackTrace(error, AppException.createError);
         return error;
