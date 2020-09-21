@@ -1,12 +1,12 @@
 # AppException
 
-> AppException is a small and easy-to-use HTTP error library for Node. It's an addition to [AppException](https://github.com/vedrxn/http-exception)
+> AppException is a small and easy-to-use HTTP error library for Node. It's an addition to [HttpException](https://github.com/vedrxn/http-exception)
 
 [Exceptions vs Errors](https://nodejs.org/api/errors.html#errors_exceptions_vs_errors)
 
 ## Features
 
-AppException improves AppException work making easier to create errors with custom application codes.
+AppException improves HttpException work making easier to create errors with custom application codes.
 
 [Node's http module](https://nodejs.org/api/http.html)
 
