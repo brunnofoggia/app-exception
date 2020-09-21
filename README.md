@@ -27,6 +27,20 @@ throw AppException.badRequest('test', 9);
 
 ```
 
+### Integration with Express.js
+
+```javascript
+const app = express();
+
+app.use(async function (err, req, res, next) {
+    if(err instanceof HttpException) {
+        return res.status(err.status).json(err);
+    }
+
+    // other error handling stuff
+});
+```
+
 ## Syntax
 
 ### AppException\[httpStatusType\]([message], [code])
@@ -47,19 +61,6 @@ const error = AppException.badRequest({
 throw error
 ```
 
-### Integration with Express.js
-
-```javascript
-const app = express();
-
-app.use(async function (err, req, res, next) {
-    if(err instanceof HttpException) {
-        return res.status(err.status).json(err);
-    }
-
-    // other error handling stuff
-});
-```
 ### new AppException([message], [code], [status])
 
 * `message` { String } error message
