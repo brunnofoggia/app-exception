@@ -13,7 +13,7 @@ AppException improves AppException work making easier to create errors with cust
 ## How to Use
 
 ```javascript
-import AppException from 'app-exception-99xp';
+import AppException from 'app-exception';
 
 // via the AppException class. Parameters: message, application error code, http error code
 const errorOne = new AppException('error message', 9, 500);
