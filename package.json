@@ -1,0 +1,25 @@
+{
+    "name": "app-exception",
+    "version": "0.0.1",
+    "license": "MIT",
+    "description": "A small, easy-to-use, and dependency-free http errors library for Node",
+    "keywords": [
+        "http",
+        "error",
+        "exception"
+    ],
+    "author": {
+        "name": "Bruno Foggia",
+        "email": "team@99xp.org"
+    },
+    "type": "module",
+    "main": "src/AppException.js",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/brunnofoggia/app-exception.git"
+    },
+    "dependencies": {
+        "http-exception": "0.0.2",
+        "underscore": "^1.11.0"
+    }
+}
