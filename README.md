@@ -1,12 +1,12 @@
 # AppException
 
-> AppException is a small and easy-to-use HTTP error library for Node. It's an addition to [HttpException](https://github.com/vedrxn/http-exception)
+> AppException is a small and easy-to-use HTTP error library for Node. It's an addition to [AppException](https://github.com/vedrxn/http-exception)
 
 [Exceptions vs Errors](https://nodejs.org/api/errors.html#errors_exceptions_vs_errors)
 
 ## Features
 
-AppException improves HttpException work making easier to create errors with custom application codes.
+AppException improves AppException work making easier to create errors with custom application codes.
 
 [Node's http module](https://nodejs.org/api/http.html)
 
@@ -30,9 +30,6 @@ throw AppException.badRequest('test', 9);
 ## Syntax
 
 ### new AppException([message], [code], [status])
-### HttpException\[httpStatusType\]([message], [code])
-### HttpException.internalServerError([message], [code])
-### HttpException.badRequest([message], [code])
 
 * `message` { String } error message
 * `code` { String / Integer } application error code
@@ -41,27 +38,38 @@ throw AppException.badRequest('test', 9);
 Returns a new AppException object.
 
 ```javascript
-throw new HttpException()
+throw new AppException('error', 9, 400)
 ```
 
-### HttpException\[httpStatusType\]([message], [code])
-### HttpException.internalServerError([message], [code])
-### HttpException.badRequest([message], [code])
+### AppException\[httpStatusType\]([message], [code])
+### AppException.internalServerError([message], [code])
+### AppException.badRequest([message], [code])
 
 * `message` { String } error message
 * `code` { String / Integer } application error code
 
 Returns a new AppException object.
 
-### HttpException.createError([options])
+```javascript
+const error = AppException.badRequest({
+  message: 'No user found',
+  code: 9
+})
+
+throw error
+```
+
+### AppException.createError([options])
 
 * `options` { Object }
 
-Return a new HttpException object.
+Return a new AppException object.
 
 ```javascript
-const error = HttpException.createError({
-  message: 'No user found'
+const error = AppException.createError({
+  message: 'No user found',
+  code: 9,
+  status: 400
 })
 
 throw error

@@ -1,6 +1,6 @@
 {
     "name": "app-exception",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "license": "MIT",
     "description": "A small, easy-to-use, and dependency-free http errors library for Node",
     "keywords": [
