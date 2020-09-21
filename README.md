@@ -29,18 +29,6 @@ throw AppException.badRequest('test', 9);
 
 ## Syntax
 
-### new AppException([message], [code], [status])
-
-* `message` { String } error message
-* `code` { String / Integer } application error code
-* `status` { Integer } http error code
-
-Returns a new AppException object.
-
-```javascript
-throw new AppException('error', 9, 400)
-```
-
 ### AppException\[httpStatusType\]([message], [code])
 ### AppException.internalServerError([message], [code])
 ### AppException.badRequest([message], [code])
@@ -57,6 +45,31 @@ const error = AppException.badRequest({
 })
 
 throw error
+```
+
+### Integration with Express.js
+
+```javascript
+const app = express();
+
+app.use(async function (err, req, res, next) {
+    if(err instanceof HttpException) {
+        return res.status(err.status).json(err);
+    }
+
+    // other error handling stuff
+});
+```
+### new AppException([message], [code], [status])
+
+* `message` { String } error message
+* `code` { String / Integer } application error code
+* `status` { Integer } http error code
+
+Returns a new AppException object.
+
+```javascript
+throw new AppException('error', 9, 400)
 ```
 
 ### AppException.createError([options])
