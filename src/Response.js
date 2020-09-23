@@ -6,10 +6,9 @@ class Response extends AppException {
         Response.dispatch(this);
     }
 
-    static response(res) {
-        if (res) {
-            Response.res = res;
-        }
+    static response(req, res, next) {
+        Response.res = res;
+        next();
     }
 
     static dispatch(err) {
