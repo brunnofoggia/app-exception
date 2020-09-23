@@ -17,7 +17,7 @@ class Response extends AppException {
             return;
         }
         !Response.res._headerSent &&
-            Response.res.status(err.status).send(err.message);
+            Response.res.status(err.status).send(err);
     }
 }
 
