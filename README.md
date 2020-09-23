@@ -32,12 +32,27 @@ throw AppException.badRequest('test', 9);
 ```javascript
 const app = express();
 
+// other stuff
+
+// after all your app.use
 app.use(async function (err, req, res, next) {
     if(err instanceof HttpException) {
         return res.status(err.status).json(err);
     }
 
     // other error handling stuff
+});
+```
+
+### Catching any exception and returning as response with Express.js
+
+```javascript
+const app = express();
+
+// first app.use
+app.use(function (req, res, next) {
+    Response.response(res);
+    next();
 });
 ```
 
