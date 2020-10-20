@@ -15,8 +15,8 @@ class AppException extends HttpException {
 
     static createError(o={}) {
         o = _.defaults(o, statusList.defaults);
-        const error = new AppException(o.message, o.code, o.status);
-        Error.captureStackTrace(error, AppException.createError);
+        const error = new this(o.message, o.code, o.status);
+        Error.captureStackTrace(error, this.createError);
         return error;
     }
 
@@ -37,12 +37,12 @@ statusList.errorStatusCodes.forEach(function(o) {
     const method = camelCase(message);
 
     const defaults = {message, code, status};
-    AppException[method] = (
+    AppException[method] = function(
         message = undefined,
         code = undefined
-    ) => {
-        const error = AppException.createError(_.defaults({message, code}, defaults));
-        Error.captureStackTrace(error, AppException[method]);
+    ) {
+        const error = this.createError(_.defaults({message, code}, defaults));
+        Error.captureStackTrace(error, this[method]);
         return error;
     };
 });
