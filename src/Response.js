@@ -6,17 +6,23 @@ class Response extends AppException {
         Response.dispatch(this);
     }
 
-    static response(req, res, next) {
-        Response.res = res;
-        next();
+    static response(c) {
+        typeof c === 'function' && (Response.callback = c);
+        return (req, res, next) => {
+            Response.res = res;
+            next();
+        };
     }
 
     static dispatch(err) {
-        if (!Response.res || Response.res._headerSent) {
+        if (
+            (typeof Response.callback === 'function' &&
+                Response.callback(err, Response.res) === false) ||
+            !Response.res
+        ) {
             return;
         }
-        !Response.res._headerSent &&
-            Response.res.status(err.status).send(err);
+        !Response.res._headerSent && Response.res.status(err.status).send(err);
     }
 }
 
